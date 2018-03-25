@@ -1,4 +1,5 @@
 'use strict'
+//beginning of the quiz
 const STORE = [{
 	question: "What 80’s TV show, starring Scott Bakula, is one of the greatest shows to ever grace the airways? (For like, a million reasons. Don’t get me started...)",
 	choices: ["The A-Team", "MacGyver", "Quantum Leap", "The Golden Girls"],
