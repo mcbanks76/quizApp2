@@ -1,0 +1,45 @@
+/*.landingButton button {
+	height: 150px;
+	width: 150px;
+	border: 6px grey;
+	border-radius: 50%;
+	font-size: 20px;
+	font-weight: 200;
+	background-color: #FBFCFC;
+  	color: grey;*/
+}
+
+/*fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.form	{
+	padding-top: 350px;
+ 	width: 600px;
+  	height: 600px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	background: grey;
+}
+.form legend {
+	width: 100%;
+  	line-height: 25px;
+  	font-size: 20px;
+  	font-weight: 200;
+  	background: grey;
+    text-align: center;
+  	letter-spacing: 0;
+ 	margin: 0 auto 45px;
+}
+input[type="radio"] {
+	display: inline-block;
+	width: auto;
+  	height: auto;
+ 	font-size: 14px;
+  	text-align: center;
+  	padding: 60px;
+  	border: 2px solid #e7e7e7;
+  	border-radius: 3px;
+  	margin: 10px auto 20px;
+

@@ -1,0 +1,209 @@
+User Requirements:
+The following requirements cover what the app must do, from the user's perspective. 
+
+DONE - 1)The starting screen should have a button that users can click to start the quiz.
+
+2)Users should be prompted through a series of at least 5 multiple choice questions that they can answer.
+
+3) Users should be asked questions 1 after the other.
+
+4) Users should only be prompted with 1 question at a time.
+
+5)Users should not be able to skip questions.
+
+6)Users should also be able to see which question they're on (for instance, "7 out of 10") and their current score ("5 correct, 2 incorrect").
+
+7)Upon submitting an answer, users should:
+	a)receive textual feedback about their answer. If they were incorrect, they should be told the correct answer.
+	b)be moved onto the next question (or interact with an element to move on).
+
+8)Users should be shown their overall score at the end of the quiz. In other words, how many questions they got right out of the total questions asked.
+
+9)Users should be able to start a new game.
+
+
+// Route = some type of string that we will 'set and get' (a function)
+	// one will take current state and change it (set)
+	// get path will take path and return current path
+// Store that route property somewhere ( in a quizobject type area - where data is placed)
+//dirtymarkup.com - syntax cleaning
+//each function has single responsibility
+// function to reset games
+	// bring everying back to zero
+
+// function to changes the values and labels of input
+	// find element by id
+	// change value of the element to the next question
+	// change label content
+	// to display
+	//
+
+// function to check if selected answer is correct
+	// if correct
+		// display approval message
+		// goToNextQuestions()
+	// else display error message, show correct answer
+
+// function to change the next set of questions
+
+// function to keep track of score
+	// need variable to store record of score
+
+// function to display score on the page id="qNumberCorrect"
+
+// Event Handlers
+//Clicking Start Phase starts quiz
+//Clicking on radio buttons
+	// checkQuestion()
+//Click start again//
+
+//use .push to give feedback on answers
+
+	//Render Questions and Responses. 
+
+	
+//event Handlers
+
+		/*function handleStartButtonClick	()	{
+			$('.js-start-button').click(function()	{
+			$('.js-intro-page').remove();
+			console.log('`handleStartButtonClick` ran!');
+		});
+}
+
+/*function handleSubmitButtonCLick() {
+	$('.next-question').click(function(event)	{
+		console.log('`handleSubmitButtonClick` Ran!')
+	})
+	
+}
+
+function handleRestartButtonClick()	{
+	console.log('`handleRestartButtonClick ran!');
+}
+//Run Callback
+function handleQuizApp()	{
+	handleStartButtonClick();
+}
+$(handleQuizApp);
+
+
+/*
+   	 		for (var i = 0; i < question.choices.length; i++) {
+     		let choice = question.choices[i];
+      		var choiceElem = $( "#js-choice-template" ).children().clone();
+      		choiceElem.find("input").attr("value", choice);
+      		var choiceId = "js-question-" + quiz.currentQuestionIndex + "-choice-" + i;
+
+      	choiceElem.find("input").attr("id", choiceId)
+      	choiceElem.find("label").text(choice);
+      	choiceElem.find("label").attr("for", choiceId);
+      	questionTemplateElem.find(".js-choices").append(choiceElem);
+    };
+
+    return questionElem;
+    	let 
+    }
+     function makeAnswerFeedbackElem(isCorrect, correctAnswer, quiz) {
+    var feedbackElem = $("#js-answer-feedback-template").children().clone();
+    feedbackElem.find(".js-feedback-header").html(quiz.answerFeedbackHeader(isCorrect));
+    feedbackElem.find(".js-feedback-text").text(quiz.answerFeedbackText(isCorrect));
+    feedbackElem.find(".js-see-next").text(quiz.seeNextText());
+    return feedbackElem;
+  }
+
+  function makeFinalFeedbackElem(quiz) {
+    var finalFeedbackElem = $("#js-final-feedback-template").clone();
+    finalFeedbackElem.find(".js-results-text").text(quiz.finalFeedbackText());
+    return finalFeedbackElem;
+  }
+
+//eventHandlers
+	function handleStartButtonClick	()	{
+		$('.js-start-button').click(function()	{
+		$('.js-intro-page').remove();
+		console.log('`handleStartButtonClick` ran!');
+	});
+
+  function handleSeeNext(quiz, currentQuestionElem) {
+    $("article.quiz-details").on("click", ".js-see-next", function(event) {
+
+      if (quiz.currentQuestionIndex < quiz.questions.length - 1) {
+        $("article.quiz-details").off("click", ".js-see-next");
+        quiz.currentQuestionIndex ++;
+        $("article.quiz-details").html(makeCurrentQuestionElem(quiz));
+      }
+      else {
+        $("article.quiz-details").html(makeFinalFeedbackElem(quiz))
+      }
+    });
+  }
+
+  function handleAnswers(quiz) {
+    $("article.quiz-details").on("submit", "form[name='current-question']", function(event) {
+      event.preventDefault();
+      var answer = $("input[name='user-answer']:checked").val();
+      quiz.scoreUserAnswer(answer);
+      var question = quiz.currentQuestion();
+      var correctAnswer = question.choices[question.correctChoiceIndex]
+      var isCorrect = answer === correctAnswer;
+      handleSeeNext(quiz);
+      $("article.quiz-details").html(makeAnswerFeedbackElem(isCorrect, correctAnswer, quiz));
+    });
+  }
+
+  // We can only use handleAnswers and handleRestarts when the quiz object has been created.
+  // The submit event listener will create the quiz object then call other listeners.
+  // On browser refresh, that object isn't saved and that's fine. If you want to remember states and objects, use localStorage
+  // But we don't need that now.
+  function handleStartQuiz() {
+    $("article.quiz-details").html($("#js-start-template").clone());
+    $("form[name='quiz-start']").submit(function(event) {
+      var quiz = newQuiz();
+      event.preventDefault();
+      $("article.quiz-details").html(makeCurrentQuestionElem(quiz));
+      handleAnswers(quiz);
+      handleRestarts();
+    });
+  }
+
+  // The .off() method removes event handlers that were attached with .on()
+  // In this case, the listeners are handleAnswers(), handleSeeNext() and even handleRestarts()
+  // handleStartQuiz will be called again to create the new quiz object and call functions with listeners
+  // See how we called this once on load.
+  function handleRestarts() {
+    $("article.quiz-details").on("click", ".js-restart-quiz", function(event){
+      event.preventDefault();
+      $("article.quiz-details").off();
+      handleStartQuiz();
+    });
+  }
+
+$(handleStartQuiz();
+});
+
+function generateAnswerElement(item, itemIndex, template) {
+	let questionCount = 0;
+	return `
+		<input type="radio" name="${item} class="js-answer">${item.choices}</input>
+		<button type="submit" class="js-submit-button">And the Answer Is</button>`;
+}
+
+function generateAnswerElementString(inputAnswers) {
+	const answerItems = inputAnswers.map((item, index) => generateAnswerElement(item, index));
+	return answerItems.join("");
+}
+
+function generateAnswerPage()	{
+	console.log('`generateAnswerPage` Ran!');
+	const answerElementString = generateAnswerElementString(questionData);
+	$('fieldset-radio-buttons').html(answerElementString);
+}
+    
+
+
+			
+
+
+
+
