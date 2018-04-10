@@ -1,6 +1,7 @@
 *  {
 	font-family: 'Press Start 2P', cursive;
 	background: grey;
+	color: white;
 }
 
 .hidden	{
@@ -15,7 +16,7 @@
 	background: url(https://media.giphy.com/media/OphJjMBC9AbEQ/giphy.gif) no-repeat center;
 	background-size: cover;
 	position: fixed;
-	color: purple;
+	color: white;
 	text-align: center;
 	margin: 0 auto;
 	top: 0;
@@ -39,7 +40,7 @@
 }
 
 .quizStartText	{
-	color: purple;
+	color: white;
 	padding: 0 40 10 40;
 	font-size: 18px;
 }
@@ -86,7 +87,7 @@
 
 .startButton, .submitButton, .nextButton, .restartButton	{
 	background: black;
-	color: red;
+	color: white;
 	padding: 10px;
 	border-radius: 50%;
 }
